@@ -807,7 +807,7 @@
             <h2>Bienvenido a Easy Lav</h2>
             <p>¡Ahora en nuestro nuevo y amplio local!</p>
             <div class="location-highlight">
-                <i class="fas fa-map-marker-alt"></i> Selva Alegre y Av. Los Atis, Ambato
+                <i class="fas fa-map-marker-alt"></i> Selva Alegre & Av. Los Atis, Ambato 180203, Ecuador
             </div>
             <a href="#about" class="cta-button">Conoce Nuestro Nuevo Local</a>
         </div>
@@ -825,7 +825,7 @@
                     
                     <div class="location-details">
                         <h4><i class="fas fa-map-marker-alt"></i> Nueva Dirección</h4>
-                        <p>Selva Alegre y Av. Los Atis<br>Ambato, 180203, Ecuador</p>
+                        <p>Selva Alegre & Av. Los Atis<br>Ambato 180203, Ecuador</p>
                     </div>
 
                     <div class="location-details">
@@ -870,3 +870,96 @@
                     <h3>Doblado Expert</h3>
                     <p>Servicio de doblado profesional para que tu ropa luzca impecable en todo momento.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contáctanos</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-color);">¿Tienes alguna duda o necesitas más información? ¡Estamos aquí para ayudarte!</p>
+        <a href="contact.html" class="contact-button">Ir a la Página de Contacto</a>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/593967829548" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Easy Lav</h3>
+                <p>Tu lavandería de confianza</p>
+                <p>&copy; 2025 Easy Lav. Todos los derechos reservados.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><a href="https://wa.me/593967829548" target="_blank">+593 96-782-9548</a></p>
+                <p><a href="mailto:adarielasanchez@gmail.com">adarielasanchez@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <p>Selva Alegre & Av. Los Atis<br>Ambato 180203, Ecuador</p>
+                <p>Desarrollado por Juan A. Montesdeoca</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loader
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                }, 500);
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+        }
+
+        // Close mobile menu when clicking a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
