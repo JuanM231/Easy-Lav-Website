@@ -214,7 +214,9 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, rgba(255, 76, 60, 0.8), rgba(255, 62, 85, 0.8)), url('https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/476115927_1199021641623867_2329938263588946972_n.jpg');
+            /* COLOCA LA URL DE TU NUEVA FOTO DEL LOCAL AQUÍ */
+            background: linear-gradient(135deg, rgba(255, 76, 60, 0.85), rgba(255, 62, 85, 0.85));
+            /* Ejemplo: background: linear-gradient(135deg, rgba(255, 76, 60, 0.85), rgba(255, 62, 85, 0.85)), url('TU_URL_AQUI'); */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -280,8 +282,27 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 900px;
             animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        /* Announcement Badge */
+        .announcement-badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: bounce 2s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .hero h2 {
@@ -301,7 +322,18 @@
             font-size: 1.5rem;
             margin-bottom: 2rem;
             font-weight: 400;
-            opacity: 0.9;
+            opacity: 0.95;
+        }
+
+        .hero .location-highlight {
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: rgba(0, 212, 255, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 1rem;
+            border: 2px solid rgba(0, 212, 255, 0.5);
         }
 
         .cta-button {
@@ -317,6 +349,7 @@
             box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
             position: relative;
             overflow: hidden;
+            margin-top: 1rem;
         }
 
         .cta-button::before {
@@ -368,8 +401,8 @@
             border-radius: 2px;
         }
 
-        /* About Section */
-        .about {
+        /* New Location Section */
+        .new-location {
             background: var(--light-color);
             border-radius: 20px;
             margin: 4rem 0;
@@ -377,38 +410,100 @@
             overflow: hidden;
         }
 
-        .about-content {
+        .new-location-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
         }
 
-        .about-text {
-            padding: 2rem;
+        .new-location-text {
+            padding: 3rem;
         }
 
-        .about-text p {
+        .new-location-text h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .new-location-text .highlight {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .new-location-text p {
             font-size: 1.2rem;
             line-height: 1.8;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             color: var(--text-color);
         }
 
-        .about-image {
-            position: relative;
-            overflow: hidden;
+        .location-details {
+            background: linear-gradient(135deg, rgba(255, 76, 60, 0.1), rgba(0, 212, 255, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
         }
 
-        .about-image img {
+        .location-details h4 {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .location-details h4 i {
+            color: var(--primary-color);
+        }
+
+        .location-details p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .new-location-image {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255, 76, 60, 0.1), rgba(0, 212, 255, 0.1));
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .new-location-image img {
             width: 100%;
-            height: 400px;
+            height: 500px;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .about-image:hover img {
+        .new-location-image:hover img {
             transform: scale(1.1);
+        }
+
+        /* Placeholder for image */
+        .image-placeholder {
+            text-align: center;
+            color: #999;
+            padding: 3rem;
+        }
+
+        .image-placeholder i {
+            font-size: 5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .image-placeholder p {
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         /* Services Section */
@@ -610,6 +705,11 @@
                 padding: 1rem 0;
             }
 
+            .announcement-badge {
+                font-size: 1rem;
+                padding: 0.6rem 1.5rem;
+            }
+
             .hero h2 {
                 font-size: 2.5rem;
             }
@@ -618,12 +718,25 @@
                 font-size: 1.2rem;
             }
 
+            .hero .location-highlight {
+                font-size: 1.1rem;
+                padding: 0.8rem 1.5rem;
+            }
+
             .section-title {
                 font-size: 2rem;
             }
 
-            .about-content {
+            .new-location-content {
                 grid-template-columns: 1fr;
+            }
+
+            .new-location-text {
+                padding: 2rem;
+            }
+
+            .new-location-text h3 {
+                font-size: 2rem;
             }
 
             .services-grid {
@@ -668,7 +781,7 @@
             </a>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home">Inicio</a></li>
-                <li><a href="#about">Sobre Nosotros</a></li>
+                <li><a href="#about">Nuevo Local</a></li>
                 <li><a href="#services">Servicios</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
@@ -688,23 +801,50 @@
             <div class="floating-bubble"></div>
         </div>
         <div class="hero-content">
+            <div class="announcement-badge">
+                <i class="fas fa-bullhorn"></i> ¡NOS MUDAMOS!
+            </div>
             <h2>Bienvenido a Easy Lav</h2>
-            <p>Tu solución de lavandería premium al alcance de todos</p>
-            <a href="#about" class="cta-button">Descubre Más</a>
+            <p>¡Ahora en nuestro nuevo y amplio local!</p>
+            <div class="location-highlight">
+                <i class="fas fa-map-marker-alt"></i> Selva Alegre y Av. Los Atis, Ambato
+            </div>
+            <a href="#about" class="cta-button">Conoce Nuestro Nuevo Local</a>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- New Location Section -->
     <section id="about" class="section">
-        <div class="about fade-in">
-            <h2 class="section-title">Sobre Nosotros</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Easy Lav ofrece un servicio de lavandería rápido, eficiente y de calidad gracias a nuestras máquinas Speed Queen, líderes en el mercado.</p>
-                    <p>Aquí cuidamos tu ropa como si fuera nuestra, brindándote resultados impecables y a tiempo. ¡Tu mejor opción para mantener tus prendas limpias y frescas!</p>
+        <div class="new-location fade-in">
+            <h2 class="section-title">Nuestro Nuevo Local</h2>
+            <div class="new-location-content">
+                <div class="new-location-text">
+                    <h3>¡Más Espacio, <span class="highlight">Mejor Servicio!</span></h3>
+                    <p>Nos complace anunciar que Easy Lav se ha mudado a un local más amplio y moderno para servirte mejor.</p>
+                    <p>Con más espacio, podremos atender a más clientes, ofrecer un ambiente más cómodo y mantener la misma calidad de siempre con nuestras máquinas Speed Queen.</p>
+                    
+                    <div class="location-details">
+                        <h4><i class="fas fa-map-marker-alt"></i> Nueva Dirección</h4>
+                        <p>Selva Alegre y Av. Los Atis<br>Ambato, 180203, Ecuador</p>
+                    </div>
+
+                    <div class="location-details">
+                        <h4><i class="fas fa-clock"></i> Horarios</h4>
+                        <p>Lunes a Viernes: 8:00 AM - 7:00 PM<br>
+                        Sábados y Domingos: 8:30 AM - 7:00 PM</p>
+                    </div>
                 </div>
-                <div class="about-image">
-                    <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/refs/heads/main/images/19708901324.png" alt="Servicio de lavandería profesional">
+                <div class="new-location-image">
+                    <!-- COLOCA LA FOTO DE TU NUEVO LOCAL AQUÍ -->
+                    <!-- Descomenta y reemplaza la URL cuando tengas la foto:
+                    <img src="URL_DE_TU_FOTO_AQUI" alt="Nuevo local de Easy Lav">
+                    -->
+                    <!-- Mientras tanto, muestra el placeholder: -->
+                    <div class="image-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Espacio para foto del nuevo local</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">(Reemplaza el comentario en el código HTML con la URL de tu imagen)</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -730,133 +870,3 @@
                     <h3>Doblado Expert</h3>
                     <p>Servicio de doblado profesional para que tu ropa luzca impecable en todo momento.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="section">
-            <h2 class="section-title">¿Listo para Empezar?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Contáctanos y descubre la diferencia de un servicio de lavandería premium</p>
-            <a href="contact.html" class="contact-button">Contáctanos Ahora</a>
-        </div>
-    </section>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/593967829548" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Easy Lav</h3>
-                <p>Tu lavandería de confianza</p>
-                <p>&copy; 2025 Easy Lav. Todos los derechos reservados.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contacto</h3>
-                <p><a href="https://wa.me/593967829548" target="_blank">+593 96-782-9548</a></p>
-                <p><a href="mailto:adarielasanchez@gmail.com">adarielasanchez@gmail.com</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>Ubicación</h3>
-                <p>Av. Los Chásquis<br>Ambato 180202, Ecuador</p>
-                <p>Desarrollado por Juan A. Montesdeoca</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Loader - Solo aparece al cargar la página por primera vez en cada sesión
-        (function() {
-            // Verificar si ya se ha cargado la página en esta sesión
-            if (!sessionStorage.getItem('pageLoadedInSession')) {
-                // Primera carga en esta sesión - mostrar loader por poco tiempo
-                window.addEventListener('load', function() {
-                    setTimeout(function() {
-                        document.getElementById('loader').classList.add('hidden');
-                        // Guardar que ya se cargó la página en esta sesión
-                        sessionStorage.setItem('pageLoadedInSession', 'true');
-                    }, 500);
-                });
-            } else {
-                // No es la primera carga en esta sesión - ocultar loader completamente
-                // Añadir clase hidden inmediatamente antes de que la página cargue
-                document.addEventListener('DOMContentLoaded', function() {
-                    document.getElementById('loader').style.display = 'none';
-                });
-            }
-        })();
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile menu toggle - CORREGIDO
-        const menuToggle = document.getElementById('menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    navMenu.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                }
-            });
-        });
-
-        // Fade-in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const rate = scrolled * -0.5;
-            hero.style.transform = `translateY(${rate}px)`;
-        });
-
-        // Add floating animation to bubbles
-        document.querySelectorAll('.floating-bubble').forEach((bubble, index) => {
-            bubble.style.animationDelay = `${index * 2}s`;
-        });
-    </script>
-</body>
-</html>
