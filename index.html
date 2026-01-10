@@ -769,6 +769,15 @@
             <div class="loader-text">Easy Lav</div>
         </div>
     </div>
+    <script>
+        // Check if user has already visited in this session
+        if (sessionStorage.getItem('visited')) {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+        }
+    </script>
 
     <!-- Header -->
     <header id="header">
@@ -777,7 +786,7 @@
                 <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/475869239_1199021471623884_3319341337589532364_n.jpg" alt="Easy Lav Logo" class="logo">
                 <div class="brand-text">
                     <h1>Easy Lav</h1>
-                    <p>Lava Fácil</p>
+                    <p>Lavandería</p>
                 </div>
             </a>
             <ul class="nav-menu" id="nav-menu">
@@ -905,9 +914,10 @@
         // Loader
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader');
-            if (loader) {
+            if (loader && !sessionStorage.getItem('visited')) {
                 setTimeout(() => {
                     loader.classList.add('hidden');
+                    sessionStorage.setItem('visited', 'true');
                 }, 500);
             }
         });
