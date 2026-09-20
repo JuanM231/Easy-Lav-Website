@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad y Términos de Servicio | Easy Lav</title>
+<meta name="description" content="Política de Privacidad y Términos de Servicio de Easy Lav, lavandería en Ambato, Ecuador: qué datos recopilamos, cómo los usamos, cookies y tus derechos.">
+<meta name="robots" content="noindex">
+
+<link rel="icon" href="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/main/images/icon/475869239_1199021471623884_3319341337589532364_n-removebg-preview%20(2).ico" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          jakarta: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'sans-serif'],
+        },
+        colors: {
+          beige: '#FDFBF7',
+          beige2: '#F4EFEB',
+          charcoal: '#1A1F26',
+          sand: '#E6E1D7',
+          coffee: '#7A6B5D',
+          brand: {
+            DEFAULT: '#C83232',
+            dark: '#A82424',
+          },
+          whatsapp: '#25D366',
+        },
+        boxShadow: {
+          soft: '0 1px 2px 0 rgba(26,31,38,0.04)',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-padding-top: 6.5rem; }
+  body { font-family: 'Plus Jakarta Sans', ui-sans-serif, sans-serif; }
+
+  :focus-visible { outline: 2px solid #C83232; outline-offset: 2px; border-radius: 2px; }
+
+  @keyframes banner-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-banner-in { animation: banner-in .4s ease-out both; }
+
+  @keyframes ping-slow {
+    0% { transform: scale(1); opacity: .55; }
+    70%, 100% { transform: scale(1.9); opacity: 0; }
+  }
+  .animate-ping-slow { animation: ping-slow 2.4s cubic-bezier(0,0,.2,1) infinite; }
+
+  input.toggle { appearance: none; width: 2.5rem; height: 1.4rem; border-radius: 999px; background: #E6E1D7; position: relative; cursor: pointer; transition: background-color .2s ease; flex-shrink: 0; }
+  input.toggle::before { content: ''; position: absolute; top: 2px; left: 2px; width: 1.1rem; height: 1.1rem; border-radius: 999px; background: #fff; transition: transform .2s ease; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+  input.toggle:checked { background: #C83232; }
+  input.toggle:checked::before { transform: translateX(1.1rem); }
+  input.toggle:disabled { opacity: .6; cursor: not-allowed; }
+
+  .toc-link { position: relative; }
+  .toc-link.is-active { color: #C83232; font-weight: 600; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+
+<body class="bg-beige text-charcoal antialiased font-jakarta">
+
+<!-- ============ TOP NOTICE BAR ============ -->
+<div id="notice-bar" class="relative bg-charcoal text-beige text-sm">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-center gap-2 text-center pr-10">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 text-brand">
+      <path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z"/>
+      <circle cx="12" cy="10" r="2.4"/>
+    </svg>
+    <p class="leading-snug">
+      <span class="font-semibold">¡Nos mudamos!</span>
+      Visítanos en nuestro nuevo local en <span class="font-medium">Selva Alegre &amp; Av. Los Atis, Ambato</span>.
+    </p>
+  </div>
+  <button id="notice-close" type="button" aria-label="Cerrar aviso" class="absolute right-3 top-1/2 -translate-y-1/2 h-7 w-7 flex items-center justify-center rounded-full text-beige/70 hover:text-beige hover:bg-white/10 transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" class="h-4 w-4"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+</div>
+
+<!-- ============ NAVBAR (simplificada) ============ -->
+<header id="navbar" class="sticky top-0 z-40 bg-beige/90 backdrop-blur border-b border-sand transition-shadow">
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="index.html" class="flex items-center gap-3 shrink-0">
+        <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/main/images/475869239_1199021471623884_3319341337589532364_n.png" alt="Easy Lav" class="h-10 w-10 rounded-full ring-1 ring-sand">
+        <span class="text-xl font-bold tracking-tight text-charcoal">Easy Lav</span>
+      </a>
+      <a href="index.html" class="inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors shadow-soft">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver al inicio
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ MIGA DE PAN + ENCABEZADO ============ -->
+  <section class="py-12 sm:py-16 border-b border-sand">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Miga de pan" class="flex items-center gap-2 text-sm text-coffee">
+        <a href="index.html" class="hover:text-brand transition-colors">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-charcoal font-medium">Política de Privacidad y Términos de Servicio</span>
+      </nav>
+
+      <p class="mt-6 text-sm font-semibold text-brand">Legal</p>
+      <h1 class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-charcoal">Política de Privacidad y Términos de Servicio</h1>
+      <p class="mt-4 text-coffee leading-relaxed max-w-[65ch]">
+        En Easy Lav valoramos tu confianza. Este documento explica, en lenguaje claro, qué datos recopilamos, cómo los usamos, cómo tratamos las cookies del sitio y las condiciones bajo las cuales prestamos nuestro servicio de lavandería en Ambato, Ecuador.
+      </p>
+      <p class="mt-3 text-sm text-coffee">Última actualización: 19 de septiembre de 2026</p>
+    </div>
+  </section>
+
+  <!-- ============ CONTENIDO ============ -->
+  <section class="py-16 lg:py-20">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-4 gap-12">
+
+      <!-- Índice -->
+      <aside class="lg:col-span-1 order-2 lg:order-1">
+        <div class="lg:sticky lg:top-28 rounded-2xl border border-sand bg-white p-6">
+          <p class="text-xs font-semibold uppercase tracking-wide text-coffee">En esta página</p>
+          <ul id="toc" class="mt-4 space-y-3 text-sm">
+            <li><a href="#recopilacion" class="toc-link text-charcoal hover:text-brand transition-colors">1. Datos que recopilamos</a></li>
+            <li><a href="#uso-informacion" class="toc-link text-charcoal hover:text-brand transition-colors">2. Uso de la información</a></li>
+            <li><a href="#cookies" class="toc-link text-charcoal hover:text-brand transition-colors">3. Uso de cookies</a></li>
+            <li><a href="#derechos" class="toc-link text-charcoal hover:text-brand transition-colors">4. Tus derechos</a></li>
+            <li><a href="#conservacion" class="toc-link text-charcoal hover:text-brand transition-colors">5. Conservación y seguridad</a></li>
+            <li><a href="#terminos" class="toc-link text-charcoal hover:text-brand transition-colors">6. Términos de Servicio</a></li>
+            <li><a href="#contacto-legal" class="toc-link text-charcoal hover:text-brand transition-colors">7. Contacto legal</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Cuerpo legal -->
+      <div class="lg:col-span-3 order-1 lg:order-2 space-y-14 text-charcoal leading-relaxed">
+
+        <div>
+          <p>
+            Easy Lav ("nosotros", "nuestro" o "la lavandería") opera un local de lavandería de autoservicio y con atención personalizada en Ambato, Ecuador, así como el sitio web a través del cual estás leyendo este documento. Al visitar nuestro local, usar nuestros servicios o navegar en este sitio, aceptas las prácticas descritas a continuación, en concordancia con la Ley Orgánica de Protección de Datos Personales (LOPDP) del Ecuador.
+          </p>
+        </div>
+
+        <div id="recopilacion" class="scroll-mt-28">
+          <h2 class="text-2xl font-bold text-charcoal">1. Datos que recopilamos</h2>
+          <p class="mt-4">Para poder atenderte y notificarte sobre tus prendas, recopilamos únicamente los datos necesarios para prestar el servicio:</p>
+          <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand">
+            <li><span class="font-semibold">Nombre completo</span>, para identificar tu pedido y tus prendas.</li>
+            <li><span class="font-semibold">Número de teléfono</span>, principalmente para enviarte notificaciones por WhatsApp sobre el estado de tu ticket de lavandería (por ejemplo, cuando tu ropa está lista para recoger).</li>
+            <li><span class="font-semibold">Correo electrónico</span>, únicamente si nos escribes a través de nuestro formulario de contacto o por correo directo.</li>
+          </ul>
+          <p class="mt-4">No solicitamos ni almacenamos datos financieros, de salud ni ninguna otra categoría de dato sensible. No vendemos ni compartimos tu información con terceros con fines comerciales o publicitarios.</p>
+        </div>
+
+        <div id="uso-informacion" class="scroll-mt-28">
+          <h2 class="text-2xl font-bold text-charcoal">2. Uso de la información</h2>
+          <p class="mt-4">Usamos tus datos exclusivamente para:</p>
+          <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand">
+            <li>Enviarte notificaciones sobre el estado de tu ticket de lavandería (recibido, en proceso, listo para recoger).</li>
+            <li>Responder tus consultas realizadas por WhatsApp, teléfono, correo electrónico o el formulario de contacto del sitio.</li>
+            <li>Llevar un registro interno de pedidos que nos permita ubicar tus prendas correctamente dentro del local.</li>
+            <li>Cumplir obligaciones legales o contables aplicables a un negocio en Ecuador.</li>
+          </ul>
+          <p class="mt-4">No utilizamos tus datos de contacto para enviarte publicidad no solicitada.</p>
+        </div>
+
+        <div id="cookies" class="scroll-mt-28">
+          <h2 class="text-2xl font-bold text-charcoal">3. Uso de cookies</h2>
+          <p class="mt-4">Nuestro sitio web utiliza cookies propias y de terceros para dos fines:</p>
+          <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand">
+            <li><span class="font-semibold">Cookies necesarias:</span> permiten que el sitio funcione correctamente (por ejemplo, recordar tu preferencia de cookies). No pueden desactivarse.</li>
+            <li><span class="font-semibold">Cookies analíticas:</span> nos ayudan a entender, de forma agregada, cómo se usa el sitio (páginas visitadas, tiempo de navegación), para mejorarlo. Solo se activan si tú lo autorizas expresamente en el aviso de cookies.</li>
+          </ul>
+          <p class="mt-4">
+            Puedes aceptar o rechazar las cookies analíticas en cualquier momento desde el banner que aparece al ingresar al sitio, o volviendo a abrirlo aquí:
+          </p>
+          <button id="open-cookie-settings" type="button" class="mt-4 inline-flex items-center gap-2 rounded-full border border-sand px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-brand hover:text-brand transition-colors">
+            Gestionar preferencias de cookies
+          </button>
+        </div>
+
+        <div id="derechos" class="scroll-mt-28">
+          <h2 class="text-2xl font-bold text-charcoal">4. Tus derechos</h2>
+          <p class="mt-4">Conforme a la Ley Orgánica de Protección de Datos Personales del Ecuador, como titular de tus datos tienes derecho a:</p>
+          <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand">
+            <li><span class="font-semibold">Acceso:</span> conocer qué datos tuyos tenemos registrados.</li>
+            <li><span class="font-semibold">Rectificación:</span> corregir datos que estén desactualizados o incorrectos.</li>
+            <li><span class="font-semibold">Eliminación:</span> solicitar que borremos tus datos personales de nuestros registros, cuando ya no sean necesarios para el fin por el que los recopilamos.</li>
+            <li><span class="font-semibold">Oposición:</span> pedirnos que dejemos de usar tus datos para un fin específico, como el envío de notificaciones.</li>
+          </ul>
+          <p class="mt-4">Para ejercer cualquiera de estos derechos, escríbenos a los datos de contacto de la sección 7. Responderemos tu solicitud en un plazo razonable.</p>
+        </div>
+
+        <div id="conservacion" class="scroll-mt-28">
+          <h2 class="text-2xl font-bold text-charcoal">5. Conservación y seguridad</h2>
+          <p class="mt-4">
+            Conservamos tus datos únicamente durante el tiempo necesario para gestionar tu pedido y, en el caso de registros contables, durante el plazo que exige la normativa ecuatoriana. Aplicamos medidas razonables, tanto físicas como digitales, para proteger tu información contra acceso no autorizado, pérdida o uso indebido.
+          </p>
+        </div>
+
+        <div id="terminos" class="scroll-mt-28">
+          <h2 class="text-2xl font-bold text-charcoal">6. Términos de Servicio</h2>
+
+          <h3 class="mt-6 text-lg font-semibold text-charcoal">6.1 Descripción del servicio</h3>
+          <p class="mt-2">Easy Lav ofrece servicios de lavado, secado y doblado de prendas, ya sea de forma autónoma (autoservicio) o con la asistencia de nuestro personal, utilizando equipos profesionales Speed Queen.</p>
+
+          <h3 class="mt-6 text-lg font-semibold text-charcoal">6.2 Cuidado de tus prendas</h3>
+          <p class="mt-2">Tratamos cada carga con cuidado, siguiendo las indicaciones habituales de lavado. Sin embargo, no nos hacemos responsables por:</p>
+          <ul class="mt-3 space-y-2 list-disc pl-5 marker:text-brand">
+            <li>Daños preexistentes en las prendas (desgaste, decoloración previa, costuras débiles).</li>
+            <li>Objetos dejados en los bolsillos antes del lavado.</li>
+            <li>Prendas que, por sus indicaciones de cuidado, no sean aptas para lavado o secado a máquina y no hayan sido señaladas al momento de la entrega.</li>
+          </ul>
+
+          <h3 class="mt-6 text-lg font-semibold text-charcoal">6.3 Prendas no reclamadas</h3>
+          <p class="mt-2">Te pedimos recoger tus prendas dentro de los 30 días posteriores a la fecha en que el pedido esté listo. Pasado ese plazo, y tras intentar contactarte por los medios registrados, Easy Lav se reserva el derecho de donar las prendas no reclamadas.</p>
+
+          <h3 class="mt-6 text-lg font-semibold text-charcoal">6.4 Precios y pagos</h3>
+          <p class="mt-2">Los precios publicados en el sitio web son referenciales y pueden variar según el peso, tipo de carga o servicios adicionales solicitados. El valor final se confirma antes de procesar tu pedido en el local.</p>
+
+          <h3 class="mt-6 text-lg font-semibold text-charcoal">6.5 Modificaciones</h3>
+          <p class="mt-2">Podemos actualizar estos Términos de Servicio y esta Política de Privacidad ocasionalmente para reflejar cambios en nuestras prácticas o en la normativa vigente. La fecha de la última actualización se indica al inicio de este documento.</p>
+        </div>
+
+        <div id="contacto-legal" class="scroll-mt-28">
+          <h2 class="text-2xl font-bold text-charcoal">7. Contacto legal</h2>
+          <p class="mt-4">Si tienes preguntas sobre esta Política de Privacidad, los Términos de Servicio, o deseas ejercer alguno de tus derechos sobre tus datos personales, contáctanos:</p>
+          <dl class="mt-6 space-y-4">
+            <div class="flex gap-4">
+              <div class="h-11 w-11 shrink-0 rounded-xl bg-beige2 flex items-center justify-center text-brand">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+              </div>
+              <div>
+                <dt class="font-semibold text-charcoal">Correo</dt>
+                <dd><a href="mailto:adarielasanchez@gmail.com" class="text-coffee hover:text-brand transition-colors">adarielasanchez@gmail.com</a></dd>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="h-11 w-11 shrink-0 rounded-xl bg-beige2 flex items-center justify-center text-brand">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M4.5 4h3.2l1.4 3.8-1.9 1.4a11.8 11.8 0 0 0 5.6 5.6l1.4-1.9 3.8 1.4v3.2a1.4 1.4 0 0 1-1.5 1.4A15.9 15.9 0 0 1 3.1 5.5 1.4 1.4 0 0 1 4.5 4Z"/>
+                </svg>
+              </div>
+              <div>
+                <dt class="font-semibold text-charcoal">Teléfono / WhatsApp</dt>
+                <dd><a href="https://wa.me/593967829548" target="_blank" rel="noopener" class="text-coffee hover:text-brand transition-colors">+593 96 782 9548</a></dd>
+              </div>
+            </div>
+          </dl>
+          <p class="mt-8 text-sm text-coffee">Este documento tiene fines informativos y busca explicar nuestras prácticas de forma clara. Para situaciones legales específicas, recomendamos siempre asesorarte con un profesional del derecho.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER (simplificado) ============ -->
+<footer class="bg-charcoal text-beige/80">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center gap-4 text-center">
+    <div class="flex items-center gap-3">
+      <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/main/images/475869239_1199021471623884_3319341337589532364_n.png" alt="Easy Lav" class="h-8 w-8 rounded-full ring-1 ring-white/15">
+      <span class="text-base font-bold text-beige">Easy Lav</span>
+    </div>
+    <p class="text-sm max-w-md">Lavandería profesional en Ambato. Lavado, secado y doblado con equipos Speed Queen.</p>
+    <div class="flex items-center gap-3 text-sm">
+      <a href="index.html#servicios" class="hover:text-white transition-colors">Servicios</a>
+      <span class="text-white/20">|</span>
+      <a href="contact.html" class="hover:text-white transition-colors">Contacto</a>
+    </div>
+    <div class="mt-2 pt-4 border-t border-white/10 w-full flex flex-col sm:flex-row items-center justify-center gap-2 text-xs text-beige/60">
+      <p>&copy; 2026 Easy Lav. Todos los derechos reservados.</p>
+      <span class="hidden sm:inline text-white/20">&middot;</span>
+      <p>Desarrollado por Juan A. Montesdeoca</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ BOTÓN FLOTANTE DE WHATSAPP ============ -->
+<a
+  href="https://wa.me/593967829548"
+  target="_blank"
+  rel="noopener"
+  aria-label="Chatea con nosotros por WhatsApp"
+  class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-xl hover:scale-105 transition-transform">
+  <span class="absolute inline-flex h-full w-full rounded-full bg-whatsapp opacity-60 animate-ping-slow motion-reduce:hidden"></span>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="relative h-6 w-6">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/>
+  </svg>
+</a>
+
+<!-- ============ BANNER DE COOKIES ============ -->
+<div id="cookie-banner" class="hidden fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:pb-6">
+  <div class="animate-banner-in mx-auto max-w-3xl rounded-2xl border border-sand bg-white shadow-2xl p-6">
+    <div class="sm:flex sm:items-center sm:justify-between gap-6">
+      <p class="text-sm text-coffee leading-relaxed">
+        Utilizamos cookies para mejorar tu experiencia, analizar el uso del sitio y mostrarte contenido relevante. Puedes aceptar todas las cookies o configurar tus preferencias.
+      </p>
+      <div class="mt-4 sm:mt-0 flex shrink-0 items-center gap-3">
+        <button id="cookie-configure" type="button" class="rounded-full border border-sand px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-brand hover:text-brand transition-colors">
+          Configurar
+        </button>
+        <button id="cookie-accept-all" type="button" class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors">
+          Aceptar todas
+        </button>
+      </div>
+    </div>
+
+    <div id="cookie-config" class="hidden mt-5 pt-5 border-t border-sand space-y-4">
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <p class="text-sm font-semibold text-charcoal">Cookies necesarias</p>
+          <p class="text-xs text-coffee">Imprescindibles para que el sitio funcione correctamente.</p>
+        </div>
+        <input type="checkbox" class="toggle" checked disabled aria-label="Cookies necesarias, siempre activas">
+      </div>
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <p class="text-sm font-semibold text-charcoal">Cookies analíticas</p>
+          <p class="text-xs text-coffee">Nos ayudan a entender cómo usas el sitio para mejorarlo.</p>
+        </div>
+        <input id="cookie-analytics-toggle" type="checkbox" class="toggle" aria-label="Activar cookies analíticas">
+      </div>
+      <div class="flex justify-end">
+        <button id="cookie-save-prefs" type="button" class="rounded-full bg-charcoal px-5 py-2.5 text-sm font-semibold text-white hover:bg-black transition-colors">
+          Guardar preferencias
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // --- Navbar: sombra al hacer scroll ---
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 8) {
+        navbar.classList.add('shadow-sm');
+      } else {
+        navbar.classList.remove('shadow-sm');
+      }
+    }, { passive: true });
+
+    // --- Aviso superior: cerrar ---
+    var noticeBar = document.getElementById('notice-bar');
+    var noticeClose = document.getElementById('notice-close');
+    if (noticeClose) {
+      noticeClose.addEventListener('click', function () {
+        noticeBar.remove();
+      });
+    }
+
+    // --- Índice: resaltar sección activa al hacer scroll ---
+    var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc-link'));
+    var sections = tocLinks.map(function (link) {
+      return document.querySelector(link.getAttribute('href'));
+    });
+
+    function highlightToc() {
+      var scrollPos = window.scrollY + 140;
+      var activeIndex = 0;
+      sections.forEach(function (section, i) {
+        if (section && section.offsetTop <= scrollPos) {
+          activeIndex = i;
+        }
+      });
+      tocLinks.forEach(function (link, i) {
+        link.classList.toggle('is-active', i === activeIndex);
+      });
+    }
+
+    window.addEventListener('scroll', highlightToc, { passive: true });
+    highlightToc();
+
+    // --- Banner de cookies ---
+    var COOKIE_KEY = 'easylav_cookie_consent';
+    var GA_MEASUREMENT_ID = 'G-M5TD4J49NE';
+    var cookieBanner = document.getElementById('cookie-banner');
+    var cookieConfigPanel = document.getElementById('cookie-config');
+    var btnAcceptAll = document.getElementById('cookie-accept-all');
+    var btnConfigure = document.getElementById('cookie-configure');
+    var btnSavePrefs = document.getElementById('cookie-save-prefs');
+    var analyticsToggle = document.getElementById('cookie-analytics-toggle');
+    var openCookieSettings = document.getElementById('open-cookie-settings');
+
+    function loadAnalytics() {
+      if (window.__easylavAnalyticsLoaded) return;
+      window.__easylavAnalyticsLoaded = true;
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+      document.head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    }
+
+    function getConsent() {
+      try {
+        return JSON.parse(localStorage.getItem(COOKIE_KEY));
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function setConsent(consent) {
+      try {
+        localStorage.setItem(COOKIE_KEY, JSON.stringify(consent));
+      } catch (e) { /* almacenamiento no disponible */ }
+    }
+
+    function hideCookieBanner() {
+      cookieBanner.classList.add('hidden');
+    }
+
+    function syncToggleWithConsent() {
+      var consent = getConsent();
+      if (consent && analyticsToggle) {
+        analyticsToggle.checked = !!consent.analytics;
+      }
+    }
+
+    var existingConsent = getConsent();
+    if (!existingConsent) {
+      cookieBanner.classList.remove('hidden');
+    } else if (existingConsent.analytics) {
+      loadAnalytics();
+    }
+    syncToggleWithConsent();
+
+    btnAcceptAll.addEventListener('click', function () {
+      setConsent({ necessary: true, analytics: true, timestamp: Date.now() });
+      loadAnalytics();
+      hideCookieBanner();
+    });
+
+    btnConfigure.addEventListener('click', function () {
+      cookieConfigPanel.classList.toggle('hidden');
+    });
+
+    btnSavePrefs.addEventListener('click', function () {
+      var wantsAnalytics = analyticsToggle.checked;
+      setConsent({ necessary: true, analytics: wantsAnalytics, timestamp: Date.now() });
+      if (wantsAnalytics) { loadAnalytics(); }
+      hideCookieBanner();
+    });
+
+    if (openCookieSettings) {
+      openCookieSettings.addEventListener('click', function () {
+        syncToggleWithConsent();
+        cookieBanner.classList.remove('hidden');
+        cookieConfigPanel.classList.remove('hidden');
+        cookieBanner.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      });
+    }
+
+  });
+</script>
+
+</body>
+</html>
