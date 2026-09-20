@@ -42,7 +42,7 @@
 </script>
 
 <style>
-  html { scroll-padding-top: 6.5rem; }
+  html { scroll-padding-top: 6rem; }
   body { font-family: 'Plus Jakarta Sans', ui-sans-serif, sans-serif; }
 
   :focus-visible { outline: 2px solid #C83232; outline-offset: 2px; border-radius: 2px; }
@@ -163,7 +163,7 @@
           </p>
         </div>
 
-        <div id="recopilacion" class="scroll-mt-28">
+        <div id="recopilacion" class="scroll-mt-24">
           <h2 class="text-2xl font-bold text-charcoal">1. Datos que recopilamos</h2>
           <p class="mt-4">Para poder atenderte y notificarte sobre tus prendas, recopilamos únicamente los datos necesarios para prestar el servicio:</p>
           <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand">
@@ -174,7 +174,7 @@
           <p class="mt-4">No solicitamos ni almacenamos datos financieros, de salud ni ninguna otra categoría de dato sensible. No vendemos ni compartimos tu información con terceros con fines comerciales o publicitarios.</p>
         </div>
 
-        <div id="uso-informacion" class="scroll-mt-28">
+        <div id="uso-informacion" class="scroll-mt-24">
           <h2 class="text-2xl font-bold text-charcoal">2. Uso de la información</h2>
           <p class="mt-4">Usamos tus datos exclusivamente para:</p>
           <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand">
@@ -186,7 +186,7 @@
           <p class="mt-4">No utilizamos tus datos de contacto para enviarte publicidad no solicitada.</p>
         </div>
 
-        <div id="cookies" class="scroll-mt-28">
+        <div id="cookies" class="scroll-mt-24">
           <h2 class="text-2xl font-bold text-charcoal">3. Uso de cookies</h2>
           <p class="mt-4">Nuestro sitio web utiliza cookies propias y de terceros para dos fines:</p>
           <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand">
@@ -201,7 +201,7 @@
           </button>
         </div>
 
-        <div id="derechos" class="scroll-mt-28">
+        <div id="derechos" class="scroll-mt-24">
           <h2 class="text-2xl font-bold text-charcoal">4. Tus derechos</h2>
           <p class="mt-4">Conforme a la Ley Orgánica de Protección de Datos Personales del Ecuador, como titular de tus datos tienes derecho a:</p>
           <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand">
@@ -213,14 +213,14 @@
           <p class="mt-4">Para ejercer cualquiera de estos derechos, escríbenos a los datos de contacto de la sección 7. Responderemos tu solicitud en un plazo razonable.</p>
         </div>
 
-        <div id="conservacion" class="scroll-mt-28">
+        <div id="conservacion" class="scroll-mt-24">
           <h2 class="text-2xl font-bold text-charcoal">5. Conservación y seguridad</h2>
           <p class="mt-4">
             Conservamos tus datos únicamente durante el tiempo necesario para gestionar tu pedido y, en el caso de registros contables, durante el plazo que exige la normativa ecuatoriana. Aplicamos medidas razonables, tanto físicas como digitales, para proteger tu información contra acceso no autorizado, pérdida o uso indebido.
           </p>
         </div>
 
-        <div id="terminos" class="scroll-mt-28">
+        <div id="terminos" class="scroll-mt-24">
           <h2 class="text-2xl font-bold text-charcoal">6. Términos de Servicio</h2>
 
           <h3 class="mt-6 text-lg font-semibold text-charcoal">6.1 Descripción del servicio</h3>
@@ -244,7 +244,7 @@
           <p class="mt-2">Podemos actualizar estos Términos de Servicio y esta Política de Privacidad ocasionalmente para reflejar cambios en nuestras prácticas o en la normativa vigente. La fecha de la última actualización se indica al inicio de este documento.</p>
         </div>
 
-        <div id="contacto-legal" class="scroll-mt-28">
+        <div id="contacto-legal" class="scroll-mt-24">
           <h2 class="text-2xl font-bold text-charcoal">7. Contacto legal</h2>
           <p class="mt-4">Si tienes preguntas sobre esta Política de Privacidad, los Términos de Servicio, o deseas ejercer alguno de tus derechos sobre tus datos personales, contáctanos:</p>
           <dl class="mt-6 space-y-4">
@@ -375,27 +375,58 @@
       });
     }
 
-    // --- Índice: resaltar sección activa al hacer scroll ---
+    // --- Índice: resaltar sección activa (IntersectionObserver) ---
     var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc-link'));
-    var sections = tocLinks.map(function (link) {
-      return document.querySelector(link.getAttribute('href'));
-    });
+    var sectionEls = tocLinks
+      .map(function (link) { return document.querySelector(link.getAttribute('href')); })
+      .filter(Boolean);
 
-    function highlightToc() {
-      var scrollPos = window.scrollY + 140;
-      var activeIndex = 0;
-      sections.forEach(function (section, i) {
-        if (section && section.offsetTop <= scrollPos) {
-          activeIndex = i;
-        }
-      });
-      tocLinks.forEach(function (link, i) {
-        link.classList.toggle('is-active', i === activeIndex);
+    var visibility = {};
+
+    function setActiveById(id) {
+      tocLinks.forEach(function (link) {
+        link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
       });
     }
 
-    window.addEventListener('scroll', highlightToc, { passive: true });
-    highlightToc();
+    function updateActiveFromVisibility() {
+      // Recorre las secciones en orden de documento y usa la primera
+      // que esté actualmente dentro de la franja de detección.
+      for (var i = 0; i < sectionEls.length; i++) {
+        var id = sectionEls[i].id;
+        if (visibility[id]) {
+          setActiveById(id);
+          return;
+        }
+      }
+    }
+
+    if ('IntersectionObserver' in window) {
+      var tocObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          visibility[entry.target.id] = entry.isIntersecting;
+        });
+        updateActiveFromVisibility();
+      }, {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0.2
+      });
+
+      sectionEls.forEach(function (el) { tocObserver.observe(el); });
+    }
+
+    // Al hacer clic, el ítem se marca activo de inmediato, sin
+    // esperar a que termine la animación del scroll suave.
+    tocLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        var id = link.getAttribute('href').slice(1);
+        setActiveById(id);
+      });
+    });
+
+    // Primera sección activa por defecto al cargar la página.
+    if (sectionEls.length) { setActiveById(sectionEls[0].id); }
 
     // --- Banner de cookies ---
     var COOKIE_KEY = 'easylav_cookie_consent';
