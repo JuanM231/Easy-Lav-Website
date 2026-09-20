@@ -454,8 +454,8 @@
     <div>
       <h3 class="text-sm font-semibold text-beige">Legal</h3>
       <ul class="mt-4 space-y-2.5 text-sm">
-        <li><a href="politica-de-privacidad.html" class="hover:text-white transition-colors">Política de Privacidad</a></li>
-        <li><a href="terminos-de-servicio.html" class="hover:text-white transition-colors">Términos de Servicio</a></li>
+        <li><a href="privacy.html" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+        <li><a href="privacy.html#terminos" class="hover:text-white transition-colors">Términos de Servicio</a></li>
       </ul>
     </div>
 
@@ -582,12 +582,27 @@
 
     // --- Banner de cookies ---
     var COOKIE_KEY = 'easylav_cookie_consent';
+    var GA_MEASUREMENT_ID = 'G-M5TD4J49NE';
     var cookieBanner = document.getElementById('cookie-banner');
     var cookieConfigPanel = document.getElementById('cookie-config');
     var btnAcceptAll = document.getElementById('cookie-accept-all');
     var btnConfigure = document.getElementById('cookie-configure');
     var btnSavePrefs = document.getElementById('cookie-save-prefs');
     var analyticsToggle = document.getElementById('cookie-analytics-toggle');
+
+    function loadAnalytics() {
+      if (window.__easylavAnalyticsLoaded) return;
+      window.__easylavAnalyticsLoaded = true;
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+      document.head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    }
 
     function getConsent() {
       try {
@@ -607,12 +622,16 @@
       cookieBanner.classList.add('hidden');
     }
 
-    if (!getConsent()) {
+    var existingConsent = getConsent();
+    if (!existingConsent) {
       cookieBanner.classList.remove('hidden');
+    } else if (existingConsent.analytics) {
+      loadAnalytics();
     }
 
     btnAcceptAll.addEventListener('click', function () {
       setConsent({ necessary: true, analytics: true, timestamp: Date.now() });
+      loadAnalytics();
       hideCookieBanner();
     });
 
@@ -621,7 +640,9 @@
     });
 
     btnSavePrefs.addEventListener('click', function () {
-      setConsent({ necessary: true, analytics: analyticsToggle.checked, timestamp: Date.now() });
+      var wantsAnalytics = analyticsToggle.checked;
+      setConsent({ necessary: true, analytics: wantsAnalytics, timestamp: Date.now() });
+      if (wantsAnalytics) { loadAnalytics(); }
       hideCookieBanner();
     });
 
