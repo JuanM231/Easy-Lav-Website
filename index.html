@@ -45,6 +45,9 @@
   };
 </script>
 
+<!-- i18n.js debe cargarse con defer, para que el DOM ya exista cuando se ejecute -->
+<script src="i18n.js" defer></script>
+
 <style>
   html { scroll-padding-top: 6.5rem; }
   body { font-family: 'Plus Jakarta Sans', ui-sans-serif, sans-serif; }
@@ -87,6 +90,11 @@
   input.toggle:checked::before { transform: translateX(1.1rem); }
   input.toggle:disabled { opacity: .6; cursor: not-allowed; }
 
+  /* Selector de idioma (ES | EN) del footer */
+  .lang-btn { color: rgba(253,251,247,0.6); font-weight: 600; font-size: 0.75rem; letter-spacing: .02em; transition: color .2s ease; }
+  .lang-btn:hover { color: #FDFBF7; }
+  .lang-btn.is-active-lang { color: #FDFBF7; text-decoration: underline; text-underline-offset: 3px; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.001ms !important;
@@ -107,12 +115,9 @@
       <path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z"/>
       <circle cx="12" cy="10" r="2.4"/>
     </svg>
-    <p class="leading-snug">
-      <span class="font-semibold">¡Nos mudamos!</span>
-      Visítanos en nuestro nuevo local en <span class="font-medium">Selva Alegre &amp; Av. Los Atis, Ambato</span>.
-    </p>
+    <p class="leading-snug" data-i18n-html="notice.bar"></p>
   </div>
-  <button id="notice-close" type="button" aria-label="Cerrar aviso" class="absolute right-3 top-1/2 -translate-y-1/2 h-7 w-7 flex items-center justify-center rounded-full text-beige/70 hover:text-beige hover:bg-white/10 transition-colors">
+  <button id="notice-close" type="button" data-i18n-attrs="aria-label:notice.closeAria" aria-label="Cerrar aviso" class="absolute right-3 top-1/2 -translate-y-1/2 h-7 w-7 flex items-center justify-center rounded-full text-beige/70 hover:text-beige hover:bg-white/10 transition-colors">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" class="h-4 w-4"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
 </div>
@@ -128,10 +133,10 @@
       </a>
 
       <ul class="hidden lg:flex items-center gap-10 text-sm font-medium text-charcoal">
-        <li><a href="#inicio" class="nav-link pb-1">Inicio</a></li>
-        <li><a href="#nuevo-local" class="nav-link pb-1">Nuevo local</a></li>
-        <li><a href="#servicios" class="nav-link pb-1">Servicios</a></li>
-        <li><a href="#contacto" class="nav-link pb-1">Contacto</a></li>
+        <li><a href="#inicio" class="nav-link pb-1" data-i18n="nav.home">Inicio</a></li>
+        <li><a href="#nuevo-local" class="nav-link pb-1" data-i18n="nav.newLocation">Nuevo local</a></li>
+        <li><a href="#servicios" class="nav-link pb-1" data-i18n="nav.services">Servicios</a></li>
+        <li><a href="#contacto" class="nav-link pb-1" data-i18n="nav.contact">Contacto</a></li>
       </ul>
 
       <div class="hidden lg:flex items-center gap-6">
@@ -141,12 +146,12 @@
           </svg>
           +593 96 782 9548
         </a>
-        <a href="https://wa.me/593967829548" target="_blank" rel="noopener" class="inline-flex items-center rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors shadow-soft">
+        <a href="https://wa.me/593967829548" target="_blank" rel="noopener" class="inline-flex items-center rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors shadow-soft" data-i18n="nav.bookSlot">
           Reserva tu turno
         </a>
       </div>
 
-      <button id="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden h-10 w-10 flex items-center justify-center rounded-lg text-charcoal hover:bg-beige2 transition-colors">
+      <button id="menu-toggle" type="button" data-i18n-attrs="aria-label:nav.menuAria" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden h-10 w-10 flex items-center justify-center rounded-lg text-charcoal hover:bg-beige2 transition-colors">
         <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" class="h-6 w-6"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" class="h-6 w-6 hidden"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
@@ -156,16 +161,16 @@
   <div id="mobile-menu" class="hidden lg:hidden border-t border-sand bg-beige">
     <div class="px-4 sm:px-6 py-5 space-y-4">
       <ul class="space-y-1 text-base font-medium text-charcoal">
-        <li><a href="#inicio" class="block py-2.5 hover:text-brand transition-colors">Inicio</a></li>
-        <li><a href="#nuevo-local" class="block py-2.5 hover:text-brand transition-colors">Nuevo local</a></li>
-        <li><a href="#servicios" class="block py-2.5 hover:text-brand transition-colors">Servicios</a></li>
-        <li><a href="#contacto" class="block py-2.5 hover:text-brand transition-colors">Contacto</a></li>
+        <li><a href="#inicio" class="block py-2.5 hover:text-brand transition-colors" data-i18n="nav.home">Inicio</a></li>
+        <li><a href="#nuevo-local" class="block py-2.5 hover:text-brand transition-colors" data-i18n="nav.newLocation">Nuevo local</a></li>
+        <li><a href="#servicios" class="block py-2.5 hover:text-brand transition-colors" data-i18n="nav.services">Servicios</a></li>
+        <li><a href="#contacto" class="block py-2.5 hover:text-brand transition-colors" data-i18n="nav.contact">Contacto</a></li>
       </ul>
       <a href="https://wa.me/593967829548" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm text-coffee">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4.5 4h3.2l1.4 3.8-1.9 1.4a11.8 11.8 0 0 0 5.6 5.6l1.4-1.9 3.8 1.4v3.2a1.4 1.4 0 0 1-1.5 1.4A15.9 15.9 0 0 1 3.1 5.5 1.4 1.4 0 0 1 4.5 4Z"/></svg>
         +593 96 782 9548
       </a>
-      <a href="https://wa.me/593967829548" target="_blank" rel="noopener" class="block text-center rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition-colors">
+      <a href="https://wa.me/593967829548" target="_blank" rel="noopener" class="block text-center rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition-colors" data-i18n="nav.bookSlot">
         Reserva tu turno
       </a>
     </div>
@@ -183,27 +188,27 @@
       <div class="animate-fade-up">
         <span class="inline-flex items-center gap-2 rounded-full border border-sand bg-white/70 px-4 py-1.5 text-sm font-medium text-coffee">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-brand"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
-          Nueva ubicación en Ambato
+          <span data-i18n="hero.badge">Nueva ubicación en Ambato</span>
         </span>
 
-        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-[3.35rem] font-extrabold leading-[1.1] tracking-tight text-charcoal">
+        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-[3.35rem] font-extrabold leading-[1.1] tracking-tight text-charcoal" data-i18n="hero.title">
           Tu ropa, cuidada como se merece, en el corazón de Ambato
         </h1>
 
-        <p class="mt-6 text-lg text-coffee leading-relaxed max-w-[46ch]">
+        <p class="mt-6 text-lg text-coffee leading-relaxed max-w-[46ch]" data-i18n="hero.subtitle">
           Lavamos, secamos y doblamos tus prendas con equipos profesionales Speed Queen y la atención cercana de un equipo que entiende de telas.
         </p>
 
         <div class="mt-10 flex flex-wrap items-center gap-4">
-          <a href="https://wa.me/593967829548" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-base font-semibold text-white hover:bg-brand-dark transition-colors shadow-soft">
+          <a href="https://wa.me/593967829548" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-base font-semibold text-white hover:bg-brand-dark transition-colors shadow-soft" data-i18n="hero.ctaWhatsapp">
             Escríbenos por WhatsApp
           </a>
-          <a href="#servicios" class="inline-flex items-center gap-2 rounded-full border border-sand px-7 py-3.5 text-base font-semibold text-charcoal hover:border-brand hover:text-brand transition-colors">
+          <a href="#servicios" class="inline-flex items-center gap-2 rounded-full border border-sand px-7 py-3.5 text-base font-semibold text-charcoal hover:border-brand hover:text-brand transition-colors" data-i18n="hero.ctaServices">
             Ver servicios
           </a>
         </div>
 
-        <p class="mt-8 text-sm text-coffee">
+        <p class="mt-8 text-sm text-coffee" data-i18n="hero.hours">
           Abierto los siete días de la semana, de 7:30 a.m. a 8:00 p.m.
         </p>
       </div>
@@ -213,13 +218,14 @@
         <img
           src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/main/images/WhatsApp%20Image%202025-12-18%20at%2016.57.00.jpeg"
           alt="Interior del nuevo local de Easy Lav en Ambato, con zona de lavado, secado y área de espera"
+          data-i18n-attrs="alt:hero.imageAlt"
           class="relative w-full h-[320px] sm:h-[420px] lg:h-[520px] object-cover rounded-3xl shadow-2xl ring-1 ring-sand">
 
         <div class="hidden sm:flex absolute -bottom-6 -left-6 items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-xl ring-1 ring-sand max-w-[15rem]">
           <div class="h-10 w-10 shrink-0 rounded-xl bg-brand/10 flex items-center justify-center text-brand">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></svg>
           </div>
-          <p class="text-sm font-medium text-charcoal leading-snug">Equipos Speed Queen profesionales</p>
+          <p class="text-sm font-medium text-charcoal leading-snug" data-i18n="hero.floatBadge">Equipos Speed Queen profesionales</p>
         </div>
       </div>
 
@@ -231,9 +237,9 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
       <div class="max-w-2xl">
-        <p class="text-sm font-semibold text-brand">Nuevo local</p>
-        <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-charcoal">Más espacio, mejor experiencia</h2>
-        <p class="mt-4 text-coffee leading-relaxed">
+        <p class="text-sm font-semibold text-brand" data-i18n="newLocal.eyebrow">Nuevo local</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-charcoal" data-i18n="newLocal.title">Más espacio, mejor experiencia</h2>
+        <p class="mt-4 text-coffee leading-relaxed" data-i18n="newLocal.subtitle">
           Nos mudamos a un local más amplio y moderno en Selva Alegre y Av. Los Atis, pensado para que dejar y recoger tu ropa sea rápido y cómodo.
         </p>
       </div>
@@ -244,6 +250,7 @@
           <img
             src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/main/images/tx_dca22194-f4d5-437d-a8e4-bee804c09377_lavadero_decorar_.jpg"
             alt="Detalle cálido de una zona de lavado, representando el cuidado con el que tratamos tus prendas"
+            data-i18n-attrs="alt:newLocal.imageAlt"
             class="w-full h-[280px] lg:h-[360px] object-cover rounded-2xl border border-sand">
         </div>
 
@@ -256,8 +263,8 @@
               </svg>
             </div>
             <div>
-              <h3 class="font-semibold text-lg text-charcoal">Espacio amplio y moderno</h3>
-              <p class="mt-1 text-sm text-coffee leading-relaxed">Más máquinas disponibles y una zona de espera cómoda, para que nunca tengas que hacer fila.</p>
+              <h3 class="font-semibold text-lg text-charcoal" data-i18n="newLocal.f1.title">Espacio amplio y moderno</h3>
+              <p class="mt-1 text-sm text-coffee leading-relaxed" data-i18n="newLocal.f1.desc">Más máquinas disponibles y una zona de espera cómoda, para que nunca tengas que hacer fila.</p>
             </div>
           </div>
 
@@ -268,8 +275,8 @@
               </svg>
             </div>
             <div>
-              <h3 class="font-semibold text-lg text-charcoal">Atención personalizada</h3>
-              <p class="mt-1 text-sm text-coffee leading-relaxed">Un equipo que revisa tus prendas contigo y te asesora sobre el mejor tratamiento para cada tela.</p>
+              <h3 class="font-semibold text-lg text-charcoal" data-i18n="newLocal.f2.title">Atención personalizada</h3>
+              <p class="mt-1 text-sm text-coffee leading-relaxed" data-i18n="newLocal.f2.desc">Un equipo que revisa tus prendas contigo y te asesora sobre el mejor tratamiento para cada tela.</p>
             </div>
           </div>
 
@@ -280,8 +287,8 @@
               </svg>
             </div>
             <div>
-              <h3 class="font-semibold text-lg text-charcoal">Equipos Speed Queen profesionales</h3>
-              <p class="mt-1 text-sm text-coffee leading-relaxed">Máquinas de uso comercial que cuidan tus prendas y logran un lavado y secado más uniforme.</p>
+              <h3 class="font-semibold text-lg text-charcoal" data-i18n="newLocal.f3.title">Equipos Speed Queen profesionales</h3>
+              <p class="mt-1 text-sm text-coffee leading-relaxed" data-i18n="newLocal.f3.desc">Máquinas de uso comercial que cuidan tus prendas y logran un lavado y secado más uniforme.</p>
             </div>
           </div>
 
@@ -295,27 +302,27 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
       <div class="max-w-2xl">
-        <p class="text-sm font-semibold text-brand">Servicios</p>
-        <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-charcoal">Todo lo que tu ropa necesita</h2>
-        <p class="mt-4 text-coffee leading-relaxed">Elige el servicio que mejor se ajusta a tu carga y a tu tiempo.</p>
+        <p class="text-sm font-semibold text-brand" data-i18n="services.eyebrow">Servicios</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-charcoal" data-i18n="services.title">Todo lo que tu ropa necesita</h2>
+        <p class="mt-4 text-coffee leading-relaxed" data-i18n="services.subtitle">Elige el servicio que mejor se ajusta a tu carga y a tu tiempo.</p>
       </div>
 
       <div class="mt-14 grid md:grid-cols-3 gap-8">
 
         <!-- Lavado Premium -->
         <div class="relative flex flex-col rounded-2xl border border-sand bg-white p-8 hover:border-brand/50 transition-colors">
-          <span class="absolute -top-3 right-6 rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white shadow-soft">Servicio estrella</span>
+          <span class="absolute -top-3 right-6 rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white shadow-soft" data-i18n="services.starBadge">Servicio estrella</span>
           <div class="h-14 w-14 rounded-xl bg-beige2 flex items-center justify-center text-brand">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7">
               <rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="13" r="5"/>
               <circle cx="8" cy="6.5" r=".6" fill="currentColor" stroke="none"/><circle cx="10.6" cy="6.5" r=".6" fill="currentColor" stroke="none"/>
             </svg>
           </div>
-          <h3 class="mt-6 text-xl font-semibold text-charcoal">Lavado Premium</h3>
-          <p class="mt-2 text-sm text-coffee leading-relaxed flex-1">Lavado profesional en máquinas Speed Queen, con detergentes de calidad y ciclos según el tipo de tela.</p>
+          <h3 class="mt-6 text-xl font-semibold text-charcoal" data-i18n="services.premium.title">Lavado Premium</h3>
+          <p class="mt-2 text-sm text-coffee leading-relaxed flex-1" data-i18n="services.premium.desc">Lavado profesional en máquinas Speed Queen, con detergentes de calidad y ciclos según el tipo de tela.</p>
           <div class="mt-6 pt-6 border-t border-sand">
-            <p class="text-2xl font-bold text-charcoal">Desde $2.50</p>
-            <p class="mt-0.5 text-xs text-coffee">Carga de hasta 8 kg</p>
+            <p class="text-2xl font-bold text-charcoal" data-i18n="services.premium.price">Desde $2.50</p>
+            <p class="mt-0.5 text-xs text-coffee" data-i18n="services.premium.note">Carga de hasta 8 kg</p>
           </div>
         </div>
 
@@ -326,11 +333,11 @@
               <path d="M3 8h10a2.5 2.5 0 1 0-2.5-2.5"/><path d="M3 12h14a2.5 2.5 0 1 1-2.5 2.5"/><path d="M3 16h8"/>
             </svg>
           </div>
-          <h3 class="mt-6 text-xl font-semibold text-charcoal">Secado Rápido</h3>
-          <p class="mt-2 text-sm text-coffee leading-relaxed flex-1">Secado eficiente que preserva la textura y el color de tus prendas favoritas, listo en poco tiempo.</p>
+          <h3 class="mt-6 text-xl font-semibold text-charcoal" data-i18n="services.dry.title">Secado Rápido</h3>
+          <p class="mt-2 text-sm text-coffee leading-relaxed flex-1" data-i18n="services.dry.desc">Secado eficiente que preserva la textura y el color de tus prendas favoritas, listo en poco tiempo.</p>
           <div class="mt-6 pt-6 border-t border-sand">
-            <p class="text-2xl font-bold text-charcoal">Desde $1.50</p>
-            <p class="mt-0.5 text-xs text-coffee">Ciclo de 30 minutos</p>
+            <p class="text-2xl font-bold text-charcoal" data-i18n="services.dry.price">Desde $1.50</p>
+            <p class="mt-0.5 text-xs text-coffee" data-i18n="services.dry.note">Ciclo de 30 minutos</p>
           </div>
         </div>
 
@@ -341,17 +348,17 @@
               <rect x="4" y="5" width="16" height="4" rx="1"/><rect x="4" y="10.5" width="16" height="4" rx="1"/><rect x="4" y="16" width="16" height="4" rx="1"/>
             </svg>
           </div>
-          <h3 class="mt-6 text-xl font-semibold text-charcoal">Doblado Expert</h3>
-          <p class="mt-2 text-sm text-coffee leading-relaxed flex-1">Doblado prolijo y organizado, para que recibas tu ropa lista para guardar directamente en el clóset.</p>
+          <h3 class="mt-6 text-xl font-semibold text-charcoal" data-i18n="services.fold.title">Doblado Expert</h3>
+          <p class="mt-2 text-sm text-coffee leading-relaxed flex-1" data-i18n="services.fold.desc">Doblado prolijo y organizado, para que recibas tu ropa lista para guardar directamente en el clóset.</p>
           <div class="mt-6 pt-6 border-t border-sand">
-            <p class="text-2xl font-bold text-charcoal">Desde $1.00</p>
-            <p class="mt-0.5 text-xs text-coffee">Por carga</p>
+            <p class="text-2xl font-bold text-charcoal" data-i18n="services.fold.price">Desde $1.00</p>
+            <p class="mt-0.5 text-xs text-coffee" data-i18n="services.fold.note">Por carga</p>
           </div>
         </div>
 
       </div>
 
-      <p class="mt-8 text-xs text-coffee">*Precios referenciales. El valor final depende del peso y tipo de carga.</p>
+      <p class="mt-8 text-xs text-coffee" data-i18n="services.disclaimer">*Precios referenciales. El valor final depende del peso y tipo de carga.</p>
     </div>
   </section>
 
@@ -360,12 +367,12 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-start">
 
       <div>
-        <p class="text-sm font-semibold text-brand">Contacto</p>
-        <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-charcoal">Visítanos o escríbenos</h2>
-        <p class="mt-4 text-coffee leading-relaxed max-w-[46ch]">Resuelve tus dudas, pregunta por tu carga o simplemente pasa por el local. Con gusto te atendemos.</p>
+        <p class="text-sm font-semibold text-brand" data-i18n="nav.contact">Contacto</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-charcoal" data-i18n="contactSection.title">Visítanos o escríbenos</h2>
+        <p class="mt-4 text-coffee leading-relaxed max-w-[46ch]" data-i18n="contactSection.subtitle">Resuelve tus dudas, pregunta por tu carga o simplemente pasa por el local. Con gusto te atendemos.</p>
 
         <a href="contact.html" class="mt-6 inline-flex items-center gap-2 rounded-full border border-sand bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-brand hover:text-brand transition-colors">
-          Ver página de contacto completa
+          <span data-i18n="contactSection.fullPageLink">Ver página de contacto completa</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M9 6l6 6-6 6"/></svg>
         </a>
 
@@ -375,7 +382,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
             </div>
             <div>
-              <dt class="font-semibold text-charcoal">Dirección</dt>
+              <dt class="font-semibold text-charcoal" data-i18n="contact.labelAddress">Dirección</dt>
               <dd class="text-coffee">Selva Alegre y Av. Los Atis, Ambato 180203, Ecuador</dd>
             </div>
           </div>
@@ -385,8 +392,8 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
             </div>
             <div>
-              <dt class="font-semibold text-charcoal">Horario</dt>
-              <dd class="text-coffee">Lunes a domingo, de 7:30 a.m. a 8:00 p.m.</dd>
+              <dt class="font-semibold text-charcoal" data-i18n="contact.labelSchedule">Horario</dt>
+              <dd class="text-coffee" data-i18n="contact.scheduleValue">Lunes a domingo, de 7:30 a.m. a 8:00 p.m.</dd>
             </div>
           </div>
 
@@ -395,7 +402,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
             </div>
             <div>
-              <dt class="font-semibold text-charcoal">WhatsApp</dt>
+              <dt class="font-semibold text-charcoal" data-i18n="contact.labelWhatsapp">WhatsApp</dt>
               <dd><a href="https://wa.me/593967829548" target="_blank" rel="noopener" class="text-coffee hover:text-brand transition-colors">+593 96 782 9548</a></dd>
             </div>
           </div>
@@ -405,7 +412,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
             </div>
             <div>
-              <dt class="font-semibold text-charcoal">Correo</dt>
+              <dt class="font-semibold text-charcoal" data-i18n="contact.labelEmail">Correo</dt>
               <dd><a href="mailto:adarielasanchez@gmail.com" class="text-coffee hover:text-brand transition-colors">adarielasanchez@gmail.com</a></dd>
             </div>
           </div>
@@ -418,7 +425,8 @@
           class="w-full h-full border-0"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          title="Ubicación de Easy Lav en Ambato, Ecuador">
+          title="Ubicación de Easy Lav en Ambato, Ecuador"
+          data-i18n-attrs="title:contact.mapTitle">
         </iframe>
       </div>
 
@@ -443,39 +451,46 @@
         <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/main/images/475869239_1199021471623884_3319341337589532364_n.png" alt="Easy Lav" class="h-9 w-9 rounded-full ring-1 ring-white/15">
         <span class="text-lg font-bold text-beige">Easy Lav</span>
       </div>
-      <p class="mt-4 text-sm leading-relaxed">Lavandería profesional en Ambato. Lavado, secado y doblado con equipos Speed Queen.</p>
+      <p class="mt-4 text-sm leading-relaxed" data-i18n="footer.tagline">Lavandería profesional en Ambato. Lavado, secado y doblado con equipos Speed Queen.</p>
     </div>
 
     <div>
-      <h3 class="text-sm font-semibold text-beige">Enlaces</h3>
+      <h3 class="text-sm font-semibold text-beige" data-i18n="footer.linksHeading">Enlaces</h3>
       <ul class="mt-4 space-y-2.5 text-sm">
-        <li><a href="#inicio" class="hover:text-white transition-colors">Inicio</a></li>
-        <li><a href="#nuevo-local" class="hover:text-white transition-colors">Nuevo local</a></li>
-        <li><a href="#servicios" class="hover:text-white transition-colors">Servicios</a></li>
-        <li><a href="contact.html" class="hover:text-white transition-colors">Contacto</a></li>
+        <li><a href="#inicio" class="hover:text-white transition-colors" data-i18n="nav.home">Inicio</a></li>
+        <li><a href="#nuevo-local" class="hover:text-white transition-colors" data-i18n="nav.newLocation">Nuevo local</a></li>
+        <li><a href="#servicios" class="hover:text-white transition-colors" data-i18n="nav.services">Servicios</a></li>
+        <li><a href="contact.html" class="hover:text-white transition-colors" data-i18n="nav.contact">Contacto</a></li>
       </ul>
     </div>
 
     <div>
-      <h3 class="text-sm font-semibold text-beige">Legal</h3>
+      <h3 class="text-sm font-semibold text-beige" data-i18n="footer.legalHeading">Legal</h3>
       <ul class="mt-4 space-y-2.5 text-sm">
-        <li><a href="privacy.html" class="hover:text-white transition-colors">Política de Privacidad</a></li>
-        <li><a href="privacy.html#terminos" class="hover:text-white transition-colors">Términos de Servicio</a></li>
+        <li><a href="privacy.html" class="hover:text-white transition-colors" data-i18n="footer.privacy">Política de Privacidad</a></li>
+        <li><a href="privacy.html#terminos" class="hover:text-white transition-colors" data-i18n="footer.terms">Términos de Servicio</a></li>
       </ul>
     </div>
 
     <div>
-      <h3 class="text-sm font-semibold text-beige">Ubicación</h3>
-      <p class="mt-4 text-sm leading-relaxed">Selva Alegre y Av. Los Atis<br>Ambato 180203, Ecuador</p>
-      <p class="mt-4 text-sm leading-relaxed">Lunes a domingo<br>7:30 a.m. – 8:00 p.m.</p>
+      <h3 class="text-sm font-semibold text-beige" data-i18n="footer.locationHeading">Ubicación</h3>
+      <p class="mt-4 text-sm leading-relaxed" data-i18n-html="footer.addressShort">Selva Alegre y Av. Los Atis<br>Ambato 180203, Ecuador</p>
+      <p class="mt-4 text-sm leading-relaxed" data-i18n-html="footer.scheduleShort">Lunes a domingo<br>7:30 a.m. – 8:00 p.m.</p>
     </div>
 
   </div>
 
   <div class="border-t border-white/10">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-beige/60 text-center sm:text-left">
-      <p>&copy; 2026 Easy Lav. Todos los derechos reservados.</p>
-      <p>Desarrollado por Juan A. Montesdeoca</p>
+      <p data-i18n="footer.copyright">&copy; 2026 Easy Lav. Todos los derechos reservados.</p>
+      <div class="flex items-center gap-4">
+        <p data-i18n="footer.credits">Desarrollado por Juan A. Montesdeoca</p>
+        <div class="flex items-center gap-1.5" role="group" data-i18n-attrs="aria-label:footer.langAria" aria-label="Seleccionar idioma">
+          <button type="button" data-lang-switch="es" class="lang-btn" aria-pressed="true">ES</button>
+          <span class="text-white/20" aria-hidden="true">|</span>
+          <button type="button" data-lang-switch="en" class="lang-btn" aria-pressed="false">EN</button>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
@@ -486,6 +501,7 @@
   target="_blank"
   rel="noopener"
   aria-label="Chatea con nosotros por WhatsApp"
+  data-i18n-attrs="aria-label:whatsapp.floatAria"
   class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-xl hover:scale-105 transition-transform">
   <span class="absolute inline-flex h-full w-full rounded-full bg-whatsapp opacity-60 animate-ping-slow motion-reduce:hidden"></span>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="relative h-6 w-6">
@@ -497,14 +513,14 @@
 <div id="cookie-banner" class="hidden fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:pb-6">
   <div class="animate-banner-in mx-auto max-w-3xl rounded-2xl border border-sand bg-white shadow-2xl p-6">
     <div class="sm:flex sm:items-center sm:justify-between gap-6">
-      <p class="text-sm text-coffee leading-relaxed">
+      <p class="text-sm text-coffee leading-relaxed" data-i18n="cookie.text">
         Utilizamos cookies para mejorar tu experiencia, analizar el uso del sitio y mostrarte contenido relevante. Puedes aceptar todas las cookies o configurar tus preferencias.
       </p>
       <div class="mt-4 sm:mt-0 flex shrink-0 items-center gap-3">
-        <button id="cookie-configure" type="button" class="rounded-full border border-sand px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-brand hover:text-brand transition-colors">
+        <button id="cookie-configure" type="button" class="rounded-full border border-sand px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-brand hover:text-brand transition-colors" data-i18n="cookie.configure">
           Configurar
         </button>
-        <button id="cookie-accept-all" type="button" class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors">
+        <button id="cookie-accept-all" type="button" class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors" data-i18n="cookie.acceptAll">
           Aceptar todas
         </button>
       </div>
@@ -513,20 +529,20 @@
     <div id="cookie-config" class="hidden mt-5 pt-5 border-t border-sand space-y-4">
       <div class="flex items-center justify-between gap-4">
         <div>
-          <p class="text-sm font-semibold text-charcoal">Cookies necesarias</p>
-          <p class="text-xs text-coffee">Imprescindibles para que el sitio funcione correctamente.</p>
+          <p class="text-sm font-semibold text-charcoal" data-i18n="cookie.necessaryTitle">Cookies necesarias</p>
+          <p class="text-xs text-coffee" data-i18n="cookie.necessaryDesc">Imprescindibles para que el sitio funcione correctamente.</p>
         </div>
-        <input type="checkbox" class="toggle" checked disabled aria-label="Cookies necesarias, siempre activas">
+        <input type="checkbox" class="toggle" checked disabled aria-label="Cookies necesarias, siempre activas" data-i18n-attrs="aria-label:cookie.necessaryAria">
       </div>
       <div class="flex items-center justify-between gap-4">
         <div>
-          <p class="text-sm font-semibold text-charcoal">Cookies analíticas</p>
-          <p class="text-xs text-coffee">Nos ayudan a entender cómo usas el sitio para mejorarlo.</p>
+          <p class="text-sm font-semibold text-charcoal" data-i18n="cookie.analyticsTitle">Cookies analíticas</p>
+          <p class="text-xs text-coffee" data-i18n="cookie.analyticsDesc">Nos ayudan a entender cómo usas el sitio para mejorarlo.</p>
         </div>
-        <input id="cookie-analytics-toggle" type="checkbox" class="toggle" aria-label="Activar cookies analíticas">
+        <input id="cookie-analytics-toggle" type="checkbox" class="toggle" aria-label="Activar cookies analíticas" data-i18n-attrs="aria-label:cookie.analyticsAria">
       </div>
       <div class="flex justify-end">
-        <button id="cookie-save-prefs" type="button" class="rounded-full bg-charcoal px-5 py-2.5 text-sm font-semibold text-white hover:bg-black transition-colors">
+        <button id="cookie-save-prefs" type="button" class="rounded-full bg-charcoal px-5 py-2.5 text-sm font-semibold text-white hover:bg-black transition-colors" data-i18n="cookie.savePrefs">
           Guardar preferencias
         </button>
       </div>
