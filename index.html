@@ -321,8 +321,8 @@
           <h3 class="mt-6 text-xl font-semibold text-charcoal" data-i18n="services.premium.title">Lavado Premium</h3>
           <p class="mt-2 text-sm text-coffee leading-relaxed flex-1" data-i18n="services.premium.desc">Lavado profesional en máquinas Speed Queen, con detergentes de calidad y ciclos según el tipo de tela.</p>
           <div class="mt-6 pt-6 border-t border-sand">
-            <p class="text-2xl font-bold text-charcoal" data-i18n="services.premium.price">Desde $2.50</p>
-            <p class="mt-0.5 text-xs text-coffee" data-i18n="services.premium.note">Carga de hasta 8 kg</p>
+            <p class="text-2xl font-bold text-charcoal" data-i18n="services.premium.price">Desde $2.00</p>
+            <p class="mt-0.5 text-xs text-coffee" data-i18n="services.premium.note">Por ciclo de lavado</p>
           </div>
         </div>
 
@@ -336,8 +336,8 @@
           <h3 class="mt-6 text-xl font-semibold text-charcoal" data-i18n="services.dry.title">Secado Rápido</h3>
           <p class="mt-2 text-sm text-coffee leading-relaxed flex-1" data-i18n="services.dry.desc">Secado eficiente que preserva la textura y el color de tus prendas favoritas, listo en poco tiempo.</p>
           <div class="mt-6 pt-6 border-t border-sand">
-            <p class="text-2xl font-bold text-charcoal" data-i18n="services.dry.price">Desde $1.50</p>
-            <p class="mt-0.5 text-xs text-coffee" data-i18n="services.dry.note">Ciclo de 30 minutos</p>
+            <p class="text-2xl font-bold text-charcoal" data-i18n="services.dry.price">Desde $0.25</p>
+            <p class="mt-0.5 text-xs text-coffee" data-i18n="services.dry.note">Por ciclo de secado</p>
           </div>
         </div>
 
@@ -352,13 +352,90 @@
           <p class="mt-2 text-sm text-coffee leading-relaxed flex-1" data-i18n="services.fold.desc">Doblado prolijo y organizado, para que recibas tu ropa lista para guardar directamente en el clóset.</p>
           <div class="mt-6 pt-6 border-t border-sand">
             <p class="text-2xl font-bold text-charcoal" data-i18n="services.fold.price">Desde $1.00</p>
-            <p class="mt-0.5 text-xs text-coffee" data-i18n="services.fold.note">Por carga</p>
+            <p class="mt-0.5 text-xs text-coffee" data-i18n="services.fold.note">Por servicio</p>
           </div>
         </div>
 
       </div>
 
-      <p class="mt-8 text-xs text-coffee" data-i18n="services.disclaimer">*Precios referenciales. El valor final depende del peso y tipo de carga.</p>
+      <!-- Lavado en Seco (servicio destacado) -->
+      <div class="mt-8 relative flex flex-col md:flex-row md:items-center gap-6 rounded-2xl border-2 border-brand/30 bg-white p-8">
+        <span class="absolute -top-3 left-6 rounded-full bg-charcoal px-3 py-1 text-xs font-semibold text-white" data-i18n="services.dryClean.badge">Servicio especializado</span>
+
+        <div class="h-16 w-16 shrink-0 rounded-xl bg-brand/10 flex items-center justify-center text-brand">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8">
+            <circle cx="12" cy="4.5" r="1.3"/>
+            <path d="M12 5.8v2"/>
+            <path d="M12 7.8 3.5 14a1.2 1.2 0 0 0 .75 2.15h15.5A1.2 1.2 0 0 0 20.5 14L12 7.8Z"/>
+            <path d="M4 19h16"/>
+          </svg>
+        </div>
+
+        <div class="flex-1">
+          <h3 class="text-xl font-semibold text-charcoal" data-i18n="services.dryClean.title">Lavado en Seco</h3>
+          <p class="mt-2 text-sm text-coffee leading-relaxed" data-i18n="services.dryClean.desc">Cuidado especializado para prendas delicadas. Trae tus prendas y nosotros nos encargamos del resto.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="rounded-full bg-beige2 px-3 py-1 text-xs font-medium text-coffee" data-i18n="services.dryClean.cat1">Trajes</span>
+            <span class="rounded-full bg-beige2 px-3 py-1 text-xs font-medium text-coffee" data-i18n="services.dryClean.cat2">Vestidos</span>
+            <span class="rounded-full bg-beige2 px-3 py-1 text-xs font-medium text-coffee" data-i18n="services.dryClean.cat3">Abrigos</span>
+            <span class="rounded-full bg-beige2 px-3 py-1 text-xs font-medium text-coffee" data-i18n="services.dryClean.cat4">Y más</span>
+          </div>
+        </div>
+
+        <div class="md:pl-6 md:border-l md:border-sand shrink-0 md:text-right">
+          <p class="text-sm font-semibold text-brand" data-i18n="services.dryClean.price">Consultar precio según prenda</p>
+          <a href="https://wa.me/593967829548" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-charcoal hover:text-brand transition-colors">
+            <span data-i18n="services.dryClean.cta">Preguntar por WhatsApp</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M9 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-coffee" data-i18n="services.disclaimer">*Todos los precios son variables y el valor final depende de las especificaciones de cada servicio.</p>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCIA Y CONFORT ============ -->
+  <section id="experiencia" class="scroll-mt-24 py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-beige2 border border-sand p-8 sm:p-12 lg:p-16 grid lg:grid-cols-2 gap-10 items-center">
+
+        <div>
+          <p class="text-sm font-semibold text-brand" data-i18n="experience.eyebrow">Experiencia y confort</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-charcoal" data-i18n="experience.title">La mejor experiencia de lavandería en Ambato</h2>
+          <p class="mt-4 text-coffee leading-relaxed" data-i18n="experience.desc">Relájate mientras cuidamos tu ropa. Disfruta de un ambiente agradable con café recién elaborado, sánduches y snacks mientras esperas tu ciclo de lavado, o utiliza nuestro servicio por encargo y retira tu ropa limpia y lista para llevar.</p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-center gap-4 rounded-2xl bg-white border border-sand p-5">
+            <div class="h-11 w-11 shrink-0 rounded-xl bg-brand/10 flex items-center justify-center text-brand">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3c-.5 1 .5 1.5 0 3M12 3c-.5 1 .5 1.5 0 3"/>
+              </svg>
+            </div>
+            <p class="font-medium text-charcoal" data-i18n="experience.feature1">Café recién elaborado</p>
+          </div>
+
+          <div class="flex items-center gap-4 rounded-2xl bg-white border border-sand p-5">
+            <div class="h-11 w-11 shrink-0 rounded-xl bg-brand/10 flex items-center justify-center text-brand">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="M3 12h18"/><path d="m4 12 8-7 8 7"/><path d="M4 12v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
+              </svg>
+            </div>
+            <p class="font-medium text-charcoal" data-i18n="experience.feature2">Sánduches y snacks</p>
+          </div>
+
+          <div class="flex items-center gap-4 rounded-2xl bg-white border border-sand p-5">
+            <div class="h-11 w-11 shrink-0 rounded-xl bg-brand/10 flex items-center justify-center text-brand">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+              </svg>
+            </div>
+            <p class="font-medium text-charcoal" data-i18n="experience.feature3">Servicio por encargo: retira tu ropa lista para llevar</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
